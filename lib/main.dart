@@ -63,7 +63,7 @@ class _CalculatorState extends State<Calculator> {
                   if (TextDis.contains('.') == true) {
                     return;
                   }
-                  TextDis += ".";//WoW
+                  TextDis += "."; //WoW
                 } else if (label == "<=") {
                   TextDis = TextDis.substring(0, TextDis.length - 1);
                 } else {
