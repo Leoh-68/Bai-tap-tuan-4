@@ -27,7 +27,12 @@ class Calculator extends StatefulWidget {
 }
 
 class _CalculatorState extends State<Calculator> {
+  final _Controller = TextEditingController();
   late Function callback;
+  int Text1 = 0;
+  int Text2 = 0;
+  String His = "";
+  String TextDis = "0";
   Row _buildButtonRow(String label, double fSize, Color mau) {
     return Row(
       mainAxisSize: MainAxisSize.min,
@@ -36,7 +41,36 @@ class _CalculatorState extends State<Calculator> {
           height: 50,
           width: 50,
           child: TextButton(
-              onPressed: () {},
+              onPressed: () {
+                if (label == "C") {
+                  Text1 = 0;
+                  Text2 = 0;
+                  His = "";
+                  TextDis = "0";
+                } else if (label == "CE") {
+                  Text1 = 0;
+                  Text2 = 0;
+                  His = "";
+                  TextDis = "0";
+                } else if (label == "+" ||
+                    label == "-" ||
+                    label == "*" ||
+                    label == "/") {
+                  His = TextDis + label;
+                } else if (label == "+/-") {
+                  TextDis = (double.parse(TextDis) * -1).toString();
+                } else if (label == ",") {
+                  if (TextDis.contains('.') == true) {
+                    return;
+                  }
+                  TextDis += "."; //WoW
+                } else if (label == "<=") {
+                  TextDis = TextDis.substring(0, TextDis.length - 1);
+                } else {
+                  TextDis = TextDis + label;
+                }
+                setState(() {});
+              },
               child:
                   Text(label, style: TextStyle(fontSize: fSize, color: mau))),
         )
@@ -69,17 +103,17 @@ class _CalculatorState extends State<Calculator> {
                           Padding(
                             padding: EdgeInsets.only(right: 20),
                             child: Text(
-                              "0",
+                              His,
                               style:
-                                  TextStyle(fontSize: 30, color: Colors.black),
+                                  TextStyle(fontSize: 48, color: Colors.black),
                             ),
                           ),
                           Padding(
                             padding: EdgeInsets.only(right: 20),
                             child: Text(
-                              "0",
+                              TextDis,
                               style:
-                                  TextStyle(fontSize: 48, color: Colors.black),
+                                  TextStyle(fontSize: 30, color: Colors.black),
                             ),
                           ),
                         ],
