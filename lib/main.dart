@@ -60,7 +60,12 @@ class _CalculatorState extends State<Calculator> {
                 } else if (label == "+/-") {
                   TextDis = (double.parse(TextDis) * -1).toString();
                 } else if (label == ",") {
+                  if (TextDis.contains('.') == true) {
+                    return;
+                  }
                   TextDis += ".";
+                } else if (label == "<=") {
+                  TextDis = TextDis.substring(0, TextDis.length - 1);
                 } else {
                   TextDis = TextDis + label;
                 }
