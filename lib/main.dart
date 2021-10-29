@@ -33,6 +33,7 @@ class _CalculatorState extends State<Calculator> {
   int Text2 = 0;
   String His = "";
   String TextDis = "0";
+  String operation ='';
   Row _buildButtonRow(String label, double fSize, Color mau) {
     return Row(
       mainAxisSize: MainAxisSize.min,
@@ -54,9 +55,12 @@ class _CalculatorState extends State<Calculator> {
                   TextDis = "0";
                 } else if (label == "+" ||
                     label == "-" ||
-                    label == "*" ||
-                    label == "/") {
+                    label == "x" ||
+                    label == ":") {
                   His = TextDis + label;
+                  operation =label;
+                  Text1 = int.parse(TextDis);
+                  TextDis = '';
                 } else if (label == "+/-") {
                   TextDis = (double.parse(TextDis) * -1).toString();
                 } else if (label == ",") {
@@ -66,10 +70,36 @@ class _CalculatorState extends State<Calculator> {
                   TextDis += "."; //WoW
                 } else if (label == "<=") {
                   TextDis = TextDis.substring(0, TextDis.length - 1);
-                } else {
-                  TextDis = TextDis + label;
+                } else if (label == "=") {
+                  Text2 = int.parse(TextDis);
+                  if(operation=='+'){
+                    TextDis = (Text1+Text2).toString();
+                    His=Text1.toString()+operation.toString()+Text2.toString();
+                  }
+                  if(operation=='-'){
+                    TextDis = (Text1-Text2).toString();
+                    His=Text1.toString()+operation.toString()+Text2.toString();
+                  }
+                  if(operation=='x'){
+                    TextDis = (Text1*Text2).toString();
+                    His=Text1.toString()+operation.toString()+Text2.toString();
+                  }
+                  if(operation==':'){
+                    TextDis = (Text1/Text2).toString();
+                    His=Text1.toString()+operation.toString()+Text2.toString();
+                  }
+                  //Text1 = 0;
+                  //Text2 = 0;
+                  //His="";
                 }
-                setState(() {});
+                else{
+                  TextDis = TextDis + label;
+
+                }              
+                print(TextDis);
+                setState(() {
+                  TextDis;
+                });
               },
               child:
                   Text(label, style: TextStyle(fontSize: fSize, color: mau))),
@@ -128,7 +158,7 @@ class _CalculatorState extends State<Calculator> {
                     _buildButtonRow('CE', 24, Colors.white),
                     _buildButtonRow('C', 24, Colors.white),
                     _buildButtonRow('<=', 24, Colors.white),
-                    _buildButtonRow('/', 24, Colors.white)
+                    _buildButtonRow(':', 24, Colors.white)
                   ],
                 ),
               ),
@@ -137,9 +167,9 @@ class _CalculatorState extends State<Calculator> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    _buildButtonRow('1', 24, Colors.white),
-                    _buildButtonRow('2', 24, Colors.white),
-                    _buildButtonRow('3', 24, Colors.white),
+                    _buildButtonRow('7', 24, Colors.white),
+                    _buildButtonRow('8', 24, Colors.white),
+                    _buildButtonRow('9', 24, Colors.white),
                     _buildButtonRow('x', 24, Colors.white)
                   ],
                 ),
