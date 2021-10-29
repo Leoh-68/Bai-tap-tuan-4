@@ -56,7 +56,7 @@ class _CalculatorState extends State<Calculator> {
                 } else if (label == "+" ||
                     label == "-" ||
                     label == "x" ||
-                    label == ":") {
+                    label == "/") {
                   His = TextDis + label;
                   operation =label;
                   Text1 = int.parse(TextDis);
@@ -84,7 +84,7 @@ class _CalculatorState extends State<Calculator> {
                     TextDis = (Text1*Text2).toString();
                     His=Text1.toString()+operation.toString()+Text2.toString();
                   }
-                  if(operation==':'){
+                  if(operation=='/'){
                     TextDis = (Text1/Text2).toString();
                     His=Text1.toString()+operation.toString()+Text2.toString();
                   }
@@ -158,7 +158,7 @@ class _CalculatorState extends State<Calculator> {
                     _buildButtonRow('CE', 24, Colors.white),
                     _buildButtonRow('C', 24, Colors.white),
                     _buildButtonRow('<=', 24, Colors.white),
-                    _buildButtonRow(':', 24, Colors.white)
+                    _buildButtonRow('/', 24, Colors.white)
                   ],
                 ),
               ),
